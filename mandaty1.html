@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularz Mandatów</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="number"], input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .summary {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        footer {
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px solid #ccc;
+        text-align: center;
+        font-size: 0.9em;
+        color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Formularz Mandatowy</h1>
+    <form id="mandateForm">
+        <label for="reason">Powód mandatu:</label>
+        <input type="text" id="reason" name="reason" required>
+
+        <label for="amount">Kwota mandatu:</label>
+        <input type="number" id="amount" name="amount" required>
+
+        <label for="issuer">Osoba wystawiająca mandat:</label>
+        <input type="text" id="issuer" name="issuer" required>
+
+        <label for="recipient">Osoba otrzymująca mandat:</label>
+        <input type="text" id="recipient" name="recipient" required>
+
+        <label for="date">Data wystawienia:</label>
+        <input type="date" id="date" name="date" required>
+
+        <input type="submit" value="Wyślij">
+    </form>
+
+    <div class="summary" id="summary">
+        <h2>Mandat:</h2>
+        <p id="summaryText">Tutaj pojawi się podsumowanie mandatu.</p>
+    </div>
+    <footer>
+        <p>Autor: _k4cpers_ / Mariusz Marchewka</p>
+    </footer>
+    <script>
+        document.getElementById('mandateForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const reason = document.getElementById('reason').value;
+            const amount = document.getElementById('amount').value;
+            const issuer = document.getElementById('issuer').value;
+            const recipient = document.getElementById('recipient').value;
+            const date = document.getElementById('date').value;
+
+            const summaryText = `
+                <strong>Osoba wystawiająca mandat:</strong> ${issuer}<br>
+                <strong>Odbiorca:</strong> ${recipient}<br>
+                <strong>Powód:</strong> ${reason}<br>
+                <strong>Kwota:</strong> ${amount} zł<br>
+                <strong>Data:</strong> ${date}
+            `;
+
+            document.getElementById('summaryText').innerHTML = summaryText;
+        });
+    </script>
+
+</body>
+</html>
